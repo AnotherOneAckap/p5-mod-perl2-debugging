@@ -15,9 +15,6 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "private_network", ip: "192.168.88.88"
 
-  # special for box ubuntu/xenial64
-  config.ssh.username = 'ubuntu'
-
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -53,7 +50,7 @@ Vagrant.configure(2) do |config|
   
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
-    vb.customize ["modifyvm", :id, "--name", "yoserver"]
+    vb.customize ["modifyvm", :id, "--name", "mod-perl2-debugging"]
   end
 
   # View the documentation for the provider you are using for more
@@ -69,8 +66,8 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   sudo apt-get update
-  #   sudo apt-get install -y apache2
-  # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt update
+    sudo apt install -y make apache2 libapache-db-perl
+  SHELL
 end
