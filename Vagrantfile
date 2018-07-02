@@ -68,6 +68,7 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt update
-    sudo apt install -y make apache2 libapache-db-perl
+    sudo apt install -y make
+    sudo make install -C /vagrant/
   SHELL
 end
