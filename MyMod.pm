@@ -4,6 +4,7 @@ use warnings;
 
 sub handler {
 	my $r = shift;
+	$DB::single = 1;
 	print "<h3>A couple of environment variables:</h3><hr><ul>\n";
 	foreach my $e (qw(SERVER_SOFTWARE MOD_PERL GATEWAY_INTERFACE)) {
 		$DB::single = 2;
